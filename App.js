@@ -163,9 +163,8 @@ const App = () => {
       Alert.alert(config);
     });
   };
-
-  const newMethod = () => {
-    console.log('selam ');
+  const newMethodForMaster = () => {
+    console.log('master üzerinde bir metot');
   };
   return (
     <>
