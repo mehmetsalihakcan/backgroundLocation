@@ -48,11 +48,11 @@ const App = () => {
       notificationsEnabled: false,
     });
 
-    BackgroundGeolocation.on('location', (location) => {
+    BackgroundGeolocation.on('location', location => {
       // handle your locations here
       // to perform long running operation on iOS
       // you need to create background task
-      BackgroundGeolocation.startTask((taskKey) => {
+      BackgroundGeolocation.startTask(taskKey => {
         // execute long running task
         // eg. ajax post location
         // IMPORTANT: task has to be ended by endTask
@@ -60,13 +60,13 @@ const App = () => {
       });
     });
 
-    BackgroundGeolocation.on('stationary', (stationaryLocation) => {
+    BackgroundGeolocation.on('stationary', stationaryLocation => {
       // handle stationary locations here
       //Actions.sendLocation(stationaryLocation);
       console.log('Sabit Konum : ', stationaryLocation);
     });
 
-    BackgroundGeolocation.on('error', (error) => {
+    BackgroundGeolocation.on('error', error => {
       console.log('[ERROR] BackgroundGeolocation error:', error);
     });
 
@@ -78,7 +78,7 @@ const App = () => {
       console.log('[INFO] BackgroundGeolocation hizmeti durduruldu');
     });
 
-    BackgroundGeolocation.on('authorization', (status) => {
+    BackgroundGeolocation.on('authorization', status => {
       console.log(
         '[INFO] BackgroundGeolocation authorization status: ' + status,
       );
@@ -108,14 +108,14 @@ const App = () => {
 
     BackgroundGeolocation.on('background', () => {
       console.log('[INFO] Uygulama arka planda');
-      BackgroundGeolocation.getLocations(function (locations) {
+      BackgroundGeolocation.getLocations(function(locations) {
         console.log('Depolanan tüm konumlar : ', locations); //depolanan tüm konumlar alınır
       });
     });
 
     BackgroundGeolocation.on('foreground', () => {
       console.log('[INFO] Uygulama ön planda');
-      BackgroundGeolocation.getLocations(function (locations) {
+      BackgroundGeolocation.getLocations(function(locations) {
         console.log('ön planda iken depolanan tüm konumlar : ', locations);
       });
     });
@@ -133,7 +133,7 @@ const App = () => {
       console.log('[INFO] App needs to authorize the http requests');
     });
 
-    BackgroundGeolocation.checkStatus((status) => {
+    BackgroundGeolocation.checkStatus(status => {
       console.log(
         '[INFO] BackgroundGeolocation service is running',
         status.isRunning,
@@ -157,13 +157,15 @@ const App = () => {
   }, []);
 
   const getInfo = () => {
-    BackgroundGeolocation.getConfig(function (config) {
+    BackgroundGeolocation.getConfig(function(config) {
       console.log(config);
 
       Alert.alert(config);
     });
   };
-
+  const newMethodForMaster = () => {
+    console.log('master üzerinde bir metot');
+  };
   return (
     <>
       <StatusBar barStyle="dark-content" />
